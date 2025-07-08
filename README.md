@@ -199,7 +199,7 @@ Cognitive Architect represents a **10x evolution** from basic sequential thinkin
 
 ### 🚀 Performance Metrics & Improvements
 
-| Feature | Original Sequential Thinking | Cognitive Architect | Improvement |
+| Feature |  Sequential Thinking | Cognitive Architect | Improvement |
 |---------|----------------------------|-------------------|-------------|
 | **Domain Detection** | ❌ None | ✅ 11 specialized domains | **∞% increase** |
 | **Language Recognition** | ❌ Generic text only | ✅ 11+ programming languages | **1,100% increase** |
@@ -212,7 +212,7 @@ Cognitive Architect represents a **10x evolution** from basic sequential thinkin
 
 ### 🧠 Cognitive Analysis Comparison
 
-#### Original Sequential Thinking (Basic)
+#### Sequential Thinking (Basic)
 
 ```json
 {
@@ -487,14 +487,13 @@ Found a bug or have a feature request? Please [open an issue](https://github.com
 
 Join our community discussions for questions, ideas, and collaboration:
 
-- [GitHub Discussions](https://github.com/your-username/cognitive-architect/discussions)
-- [Discord Server](https://discord.gg/your-invite-link)
+- [GitHub Discussions](https://github.com/cavanaughdesign/cognitive-architect/discussions)
 
 ### 📧 Contact
 
-- **Email**: <your-email@example.com>
-- **Twitter**: [@YourTwitterHandle](https://twitter.com/YourTwitterHandle)
-- **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/your-profile)
+- **Email**: <acavanaugh@cavanaughdesignstudio.com>
+- **Twitter**: [@cavanaughdesign](https://x.com/cavanaughdesign)
+- **LinkedIn**: [Anthony Cavanaugh]( https://www.linkedin.com/in/cavanaughdesign/)
 
 ## 🤝 Contributing
 
@@ -522,8 +521,23 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 ---
 
-**Made with ❤️ by [Your Name](https://github.com/your-username)**
+## 👨‍💻 Engineer
+
+**Anthony Cavanaugh**  
+*Cavanaugh Design Studio*
+
+🌐 **Website**: [https://cavanaughdesignstudio.com](https://cavanaughdesignstudio.com)  
+📧 **Email**: [acavanaugh@cavanaughdesignstudio.com](mailto:acavanaugh@cavanaughdesignstudio.com)  
+🐦 **Twitter/X**: [https://x.com/cavanaughdesign](https://x.com/cavanaughdesign)  
+💼 **LinkedIn**: [https://www.linkedin.com/in/cavanaughdesign/](https://www.linkedin.com/in/cavanaughdesign/)  
+📸 **Instagram**: [https://www.instagram.com/cavanaughdesignstudio/](https://www.instagram.com/cavanaughdesignstudio/)  
+🐙 **GitHub**: [https://github.com/cavanaughdesign](https://github.com/cavanaughdesign)  
+📁 **Repository**: [https://github.com/cavanaughdesign/Cognitive-Architect](https://github.com/cavanaughdesign/Cognitive-Architect)
+
+---
+
+Made with ❤️ by Anthony Cavanaugh
 
 ## Cognitive Architect - Transforming thoughts into structured intelligence
 
-[⭐ Star us on GitHub](https://github.com/your-username/cognitive-architect) | [📦 NPM Package](https://www.npmjs.com/package/@modelcontextprotocol/server-cognitive-architect) | [📖 Documentation](https://your-docs-site.com)
+[⭐ Star us on GitHub](https://github.com/cavanaughdesign/cognitive-architect) | [📖 Documentation](https://your-docs-site.com)
