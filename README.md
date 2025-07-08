@@ -4,7 +4,7 @@
 
 ## 🌟 Overview
 
-Cognitive Architect transforms programming thoughts into structured software engineering insights through sophisticated cognitive analysis. It's specifically designed for developers, combining general reasoning capabilities with specialized coding features including language detection, complexity analysis, pattern recognition, and architectural guidance.
+Cognitive Architect - Model Context Protocol Server transforms programming thoughts into structured software engineering insights through sophisticated cognitive analysis. It's specifically designed for developers, combining general reasoning capabilities with specialized coding features including language detection, complexity analysis, pattern recognition, and architectural guidance.
 
 ## ✨ Key Features
 
@@ -46,20 +46,6 @@ Cognitive Architect transforms programming thoughts into structured software eng
 | **3** | Principles & Rules | Governing guidelines |
 | **4** | Meta-Concepts | Abstract ideas and methodologies |
 | **5** | Theoretical Frameworks | Philosophical and systematic models |
-
-## 🚀 Installation
-
-```bash
-npm install @modelcontextprotocol/server-cognitive-architect
-```
-
-## 🔧 Usage
-
-### As MCP Server
-
-```bash
-npx mcp-server-cognitive-architect
-```
 
 ### Tool: Cognitive Architect
 
@@ -139,23 +125,75 @@ npx mcp-server-cognitive-architect
 
 ## Configuration
 
-### Usage with Claude Desktop
+### Usage with Clients
+
+#### Claude Desktop
 
 Add this to your `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
-      "cognitive-architect": {
-        "type": "stdio",
-        "command": "node",
-        "args": [
-          "C:\\Users\\Admin\\Desktop\\cognitive-architect\\dist\\index.js"
-        ],
-        "env": {}
-      }
+    "cognitive-architect": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:\\Users\\Admin\\Desktop\\cognitive-architect\\dist\\index.js"
+      ],
+      "env": {}
+    }
   }
 }
+```
+
+#### VS Code (with MCP Extension)
+
+Add the following to your `.vscode/settings.json`:
+
+```json
+{
+  "mcp.servers": {
+    "cognitive-architect": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:\\Users\\Admin\\Desktop\\cognitive-architect\\dist\\index.js"
+      ],
+      "env": {}
+    }
+  }
+}
+```
+
+#### Windsurf
+
+Add this to your `windsurf.config.json`:
+
+```json
+{
+  "mcpServers": {
+    "cognitive-architect": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:\\Users\\Admin\\Desktop\\cognitive-architect\\dist\\index.js"
+      ],
+      "env": {}
+    }
+  }
+}
+```
+
+#### Other Clients
+
+For any MCP-compatible client, configure the server as:
+
+- **Type**: `stdio`
+- **Command**: `node`
+- **Args**: Path to your `dist/index.js`
+- **Env**: `{}` (or your custom environment variables)
+
+Refer to your client's documentation for exact configuration details.
 ```
 
 ## 🛠️ Development
