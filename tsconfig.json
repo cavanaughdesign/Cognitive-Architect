@@ -10,12 +10,12 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
-    "rootDir": ".",
+    "rootDir": "../", // Adjusted to include parent directory for test files
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "types": ["node"]
   },
-  "include": ["./**/*.ts"],
+  "include": ["./**/*.ts", "../test/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
