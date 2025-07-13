@@ -1,10 +1,8 @@
 #!/usr/bin/env node
-"use strict";
 /**
  * Test script for the Sequential Thinking MCP Server
  * This script demonstrates the enhanced capabilities of the server
  */
-Object.defineProperty(exports, "__esModule", { value: true });
 // Create a simple test that doesn't import the running server
 function runTests() {
     console.log('🧪 Testing Sequential Thinking MCP Server Enhanced Features...\n');
@@ -61,4 +59,5 @@ function runTests() {
 }
 // Run tests
 runTests();
+export {};
 //# sourceMappingURL=test.js.map

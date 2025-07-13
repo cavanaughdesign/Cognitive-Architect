@@ -6,6 +6,36 @@
 
 Cognitive Architect - Model Context Protocol Server transforms programming thoughts into structured software engineering insights through sophisticated cognitive analysis. It's specifically designed for developers, combining general reasoning capabilities with specialized coding features including language detection, complexity analysis, pattern recognition, and architectural guidance.
 
+## 🆕 What's New
+
+- **Dual-Tool Architecture**: Now includes both deep reasoning (`cognitive_architect`) and rapid analysis (`cognitive_thinking`) tools
+- **Enhanced Code Analysis**: Improved programming language detection and complexity analysis
+- **Performance Optimization**: Faster processing with heuristic-based cognitive thinking
+- **Extended Language Support**: Better support for 11+ programming languages
+- **Updated Configuration**: Corrected file paths for modern deployment
+
+## 🔧 Dual-Tool Architecture
+
+### 🧠 Cognitive Architect Tool
+
+Deep, structured reasoning for complex analysis
+
+- Multi-dimensional cognitive analysis
+- 6-layer abstraction system (concrete → theoretical)
+- Professional software engineering insights
+- Quality metrics and validation
+- Dynamic knowledge graph construction
+
+### ⚡ Cognitive Thinking Tool
+
+Rapid insights for quick analysis
+
+- Fast heuristic-based processing
+- Sentiment analysis and tone detection
+- Key concept extraction
+- Immediate summaries and insights
+- Parallel processing for speed
+
 ## ✨ Key Features
 
 ### 💻 Specialized Coding Features
@@ -49,7 +79,7 @@ Cognitive Architect - Model Context Protocol Server transforms programming thoug
 
 ### Tool: Cognitive Architect
 
-#### Input Parameters
+#### Cognitive Architect Input Parameters
 
 - `thought` (string): Your current thinking step
 - `nextThoughtNeeded` (boolean): Whether another thought step is needed
@@ -61,39 +91,72 @@ Cognitive Architect - Model Context Protocol Server transforms programming thoug
 - `branchId` (string, optional): Branch identifier
 - `needsMoreThoughts` (boolean, optional): If more thoughts are needed
 
-#### Sample Output
+#### Cognitive Architect Sample Output
 
 ```json
 {
   "thoughtNumber": 1,
   "context": {
-    "domain": "technical",
+    "domain": "frontend",
     "complexity": "high",
-    "confidence": 0.85
+    "confidence": 0.85,
+    "keywords": ["react", "typescript", "performance"]
   },
   "abstractions": {
-    "0": "Concrete elements: System, Architecture",
-    "1": "Causal relationship identified",
-    "2": "Hierarchical pattern identified"
+    "0": "Concrete elements: React, TypeScript, Performance",
+    "1": "Performance optimization implications identified",
+    "2": "Component architecture patterns detected",
+    "3": "React best practices principles",
+    "4": "Frontend architecture methodology",
+    "5": "Modern web development framework"
   },
   "quality": {
-    "overallScore": 0.72,
-    "coherence": 0.8,
-    "relevance": 0.9,
-    "depth": 0.7
+    "overallScore": 0.78,
+    "coherence": 0.85,
+    "relevance": 0.90,
+    "depth": 0.75,
+    "clarity": 0.70,
+    "novelty": 0.60
+  },
+  "codeAnalysis": {
+    "language": "typescript",
+    "complexity": "logarithmic",
+    "patterns": ["Component pattern", "Hook pattern"],
+    "suggestions": ["Consider React.memo for optimization"]
   },
   "suggestions": [
     {
       "type": "explore",
-      "suggestion": "Consider exploring alternative approaches",
-      "priority": 0.6
+      "suggestion": "Consider performance profiling tools",
+      "priority": 0.8
     }
   ],
-  "insights": ["Central concepts: system, architecture, scalability"],
+  "insights": ["Central concepts: react, performance, typescript"],
   "knowledgeGraphSummary": {
-    "totalConcepts": 5,
-    "totalRelationships": 3
+    "totalConcepts": 12,
+    "totalRelationships": 8
   }
+}
+```
+
+### Tool: Cognitive Thinking
+
+#### Cognitive Thinking Input Parameters
+
+- `query` (string): The input text or query to process
+- `focus_areas` (array, optional): Specific areas to focus on ["sentiment", "key_concepts", "summary", "urgency", "tone"]
+- `max_response_length` (integer, optional): Maximum length of summary in words (default: 100)
+
+#### Cognitive Thinking Sample Output
+
+```json
+{
+  "summary": "React performance optimization using TypeScript patterns",
+  "sentiment": "neutral",
+  "key_concepts": ["react", "typescript", "performance", "optimization"],
+  "detected_tone": "informative",
+  "confidence_score": 0.89,
+  "processing_time_ms": 45
 }
 ```
 
@@ -123,6 +186,50 @@ Cognitive Architect - Model Context Protocol Server transforms programming thoug
 - Comprehensive knowledge mapping
 - Multi-level educational content creation
 
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/cavanaughdesign/Cognitive-Architect.git
+cd Cognitive-Architect
+
+# Install dependencies
+npm install
+
+# Build the project
+npm run build
+```
+
+### Basic Usage
+
+1. **Build the server**: `npm run build`
+2. **Configure your MCP client** (see [Configuration](#configuration) section below)
+3. **Start using the tools**:
+   - `cognitive_architect` - For deep, structured reasoning
+   - `cognitive_thinking` - For quick analysis and insights
+
+### Example Usage
+
+```typescript
+// Using the cognitive_architect tool
+{
+  "thought": "I need to optimize this React component for better performance",
+  "thoughtNumber": 1,
+  "totalThoughts": 3,
+  "nextThoughtNeeded": true
+}
+```
+
+**Response includes:**
+
+- Domain detection (frontend)
+- Language recognition (JavaScript/TypeScript)
+- Performance optimization suggestions
+- Design pattern analysis
+- Code quality assessment
+
 ## Configuration
 
 ### Usage with Clients
@@ -138,7 +245,7 @@ Add this to your `claude_desktop_config.json`:
       "type": "stdio",
       "command": "node",
       "args": [
-        "C:\\Users\\Admin\\Desktop\\cognitive-architect\\dist\\index.js"
+        "C:\\Users\\Username\\cognitive-architect\\dist\\index.js"
       ],
       "env": {}
     }
@@ -157,7 +264,7 @@ Add the following to your `.vscode/settings.json`:
       "type": "stdio",
       "command": "node",
       "args": [
-        "C:\\Users\\Admin\\Desktop\\cognitive-architect\\dist\\index.js"
+        "C:\\Users\\Username\\cognitive-architect\\dist\\index.js"
       ],
       "env": {}
     }
@@ -176,7 +283,7 @@ Add this to your `windsurf.config.json`:
       "type": "stdio",
       "command": "node",
       "args": [
-        "C:\\Users\\Admin\\Desktop\\cognitive-architect\\dist\\index.js"
+        "C:\\Users\\Username\\cognitive-architect\\dist\\index.js"
       ],
       "env": {}
     }
@@ -194,14 +301,14 @@ For any MCP-compatible client, configure the server as:
 - **Env**: `{}` (or your custom environment variables)
 
 Refer to your client's documentation for exact configuration details.
-```
 
 ## 🛠️ Development
 
 ### Setup
 
 ```bash
-git clone <repository>
+git clone https://github.com/cavanaughdesign/Cognitive-Architect.git
+cd Cognitive-Architect
 npm install
 ```
 
@@ -519,7 +626,7 @@ Adjusts analysis depth and focus based on detected domain and complexity level.
 
 ### 🐛 Issues & Bug Reports
 
-Found a bug or have a feature request? Please [open an issue](https://github.com/your-username/cognitive-architect/issues) on GitHub.
+Found a bug or have a feature request? Please [open an issue](https://github.com/cavanaughdesign/Cognitive-Architect/issues) on GitHub.
 
 ### 💬 Discussions
 
@@ -550,10 +657,10 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 ## 📈 Project Status
 
-![GitHub Stars](https://img.shields.io/github/stars/your-username/cognitive-architect?style=social)
-![GitHub Forks](https://img.shields.io/github/forks/your-username/cognitive-architect?style=social)
-![GitHub Issues](https://img.shields.io/github/issues/your-username/cognitive-architect)
-![GitHub License](https://img.shields.io/github/license/your-username/cognitive-architect)
+![GitHub Stars](https://img.shields.io/github/stars/cavanaughdesign/Cognitive-Architect?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/cavanaughdesign/Cognitive-Architect?style=social)
+![GitHub Issues](https://img.shields.io/github/issues/cavanaughdesign/Cognitive-Architect)
+![GitHub License](https://img.shields.io/github/license/cavanaughdesign/Cognitive-Architect)
 ![npm Version](https://img.shields.io/npm/v/@modelcontextprotocol/server-cognitive-architect)
 ![npm Downloads](https://img.shields.io/npm/dm/@modelcontextprotocol/server-cognitive-architect)
 

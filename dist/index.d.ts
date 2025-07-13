@@ -11,6 +11,17 @@ export declare class SequentialThinkingServer {
     private codeAnalysisCache;
     private softwareInsightsCache;
     constructor();
+    processCognitiveThought(input: unknown): {
+        content: Array<{
+            type: string;
+            text: string;
+        }>;
+        isError?: boolean;
+    };
+    private generateSummary;
+    private analyzeSentiment;
+    private extractKeyConcepts;
+    private detectTone;
     private validateThoughtData;
     private formatThought;
     private analyzeContext;

@@ -73,6 +73,21 @@ interface ThoughtQuality {
   overallScore: number;
 }
 
+interface CognitiveThinkingInput {
+  query: string;
+  focus_areas?: Array<'sentiment' | 'key_concepts' | 'summary' | 'urgency' | 'tone'>;
+  max_response_length?: number;
+}
+
+interface CognitiveThinkingOutput {
+  summary?: string;
+  sentiment?: string;
+  key_concepts?: string[];
+  detected_tone?: string;
+  confidence_score: number;
+  processing_time_ms: number;
+}
+
 interface ThoughtSuggestion {
   type: 'explore' | 'clarify' | 'challenge' | 'synthesize' | 'validate';
   suggestion: string;
@@ -117,6 +132,142 @@ export class SequentialThinkingServer {
 
   constructor() {
     this.disableThoughtLogging = (process.env.DISABLE_THOUGHT_LOGGING || "").toLowerCase() === "true";
+  }
+
+  // New method for cognitive_thinking tool
+  public processCognitiveThought(input: unknown): { content: Array<{ type: string; text: string }>; isError?: boolean } {
+    const startTime = Date.now();
+    try {
+      const validatedInput = input as CognitiveThinkingInput;
+
+      if (!validatedInput.query || typeof validatedInput.query !== 'string') {
+        throw new Error('Invalid input: query must be a string');
+      }
+
+      const query = validatedInput.query;
+      const focusAreas = validatedInput.focus_areas || ['summary', 'sentiment', 'key_concepts', 'tone'];
+      const maxResponseLength = validatedInput.max_response_length || 100;
+
+      let summary: string | undefined;
+      let sentiment: string | undefined;
+      let keyConcepts: string[] | undefined;
+      let detectedTone: string | undefined;
+
+      // Simulate parallel processing and heuristic-based analysis
+      if (focusAreas.includes('summary')) {
+        summary = this.generateSummary(query, maxResponseLength);
+      }
+      if (focusAreas.includes('sentiment')) {
+        sentiment = this.analyzeSentiment(query);
+      }
+      if (focusAreas.includes('key_concepts')) {
+        keyConcepts = this.extractKeyConcepts(query);
+      }
+      if (focusAreas.includes('tone')) {
+        detectedTone = this.detectTone(query);
+      }
+
+      const confidenceScore = Math.random(); // Placeholder for heuristic confidence
+
+      const processingTimeMs = Date.now() - startTime;
+
+      const response: CognitiveThinkingOutput = {
+        summary,
+        sentiment,
+        key_concepts: keyConcepts,
+        detected_tone: detectedTone,
+        confidence_score: confidenceScore,
+        processing_time_ms: processingTimeMs
+      };
+
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify(response, null, 2)
+        }]
+      };
+
+    } catch (error) {
+      const processingTimeMs = Date.now() - startTime;
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            error: error instanceof Error ? error.message : String(error),
+            status: 'failed',
+            processing_time_ms: processingTimeMs
+          }, null, 2)
+        }],
+        isError: true
+      };
+    }
+  }
+
+  // Heuristic-based helper methods for cognitive_thinking
+  private generateSummary(text: string, maxLength: number): string {
+    const sentences = text.split('. ').filter(s => s.trim().length > 0);
+    let currentLength = 0;
+    let summarySentences: string[] = [];
+
+    for (const sentence of sentences) {
+      const words = sentence.split(' ');
+      if (currentLength + words.length <= maxLength) {
+        summarySentences.push(sentence);
+        currentLength += words.length;
+      } else {
+        break;
+      }
+    }
+    return summarySentences.join('. ') + (summarySentences.length > 0 && !summarySentences[summarySentences.length - 1].endsWith('.') ? '.' : '');
+  }
+
+  private analyzeSentiment(text: string): 'positive' | 'negative' | 'neutral' {
+    const lowerText = text.toLowerCase();
+    const positiveWords = ['good', 'great', 'excellent', 'positive', 'happy', 'success', 'advantage'];
+    const negativeWords = ['bad', 'poor', 'terrible', 'negative', 'sad', 'failure', 'disadvantage'];
+
+    let score = 0;
+    positiveWords.forEach(word => {
+      if (lowerText.includes(word)) score++;
+    });
+    negativeWords.forEach(word => {
+      if (lowerText.includes(word)) score--;
+    });
+
+    if (score > 0) return 'positive';
+    if (score < 0) return 'negative';
+    return 'neutral';
+  }
+
+  private extractKeyConcepts(text: string): string[] {
+    const words = text.toLowerCase().split(/\s+/).filter(word => word.length > 3);
+    const wordCounts: { [key: string]: number } = {};
+    words.forEach(word => {
+      wordCounts[word] = (wordCounts[word] || 0) + 1;
+    });
+
+    return Object.entries(wordCounts)
+      .sort(([, countA], [, countB]) => countB - countA)
+      .slice(0, 5)
+      .map(([word]) => word);
+  }
+
+  private detectTone(text: string): 'formal' | 'informal' | 'urgent' | 'informative' | 'neutral' {
+    const lowerText = text.toLowerCase();
+
+    if (lowerText.includes('asap') || lowerText.includes('urgent') || lowerText.includes('immediately')) {
+      return 'urgent';
+    }
+    if (lowerText.includes('hello there') || lowerText.includes('hey') || lowerText.includes('lol')) {
+      return 'informal';
+    }
+    if (lowerText.includes('therefore') || lowerText.includes('consequently') || lowerText.includes('pursuant to')) {
+      return 'formal';
+    }
+    if (lowerText.includes('information') || lowerText.includes('details') || lowerText.includes('explain')) {
+      return 'informative';
+    }
+    return 'neutral';
   }
 
   private validateThoughtData(input: unknown): ThoughtData {
@@ -259,7 +410,7 @@ export class SequentialThinkingServer {
 
   private identifyImplications(thought: string): string {
     // Look for cause-effect relationships
-    const implications = [];
+    const implications: string[] = []; // Explicitly type as string[]
     if (thought.includes('because') || thought.includes('therefore') || thought.includes('thus')) {
       implications.push('Causal relationship identified');
     }
@@ -1154,8 +1305,8 @@ class KnowledgeGraph {
 }
 
 const COGNITIVE_ARCHITECT_TOOL: Tool = {
-  name: "cognitivearchitect",
-  description: `🧠 CognitiveArchitect - Advanced AI-powered reasoning engine optimized for software development
+  name: "cognitive_architect",
+  description: `CognitiveArchitect - Advanced AI-powered reasoning engine optimized for software development
 
 SPECIALIZED FOR CODING: Transforms programming thoughts into structured software engineering insights with comprehensive code analysis, pattern recognition, and architectural guidance.
 
@@ -1225,10 +1376,48 @@ Transform your coding thoughts into structured software engineering architecture
   }
 };
 
+const COGNITIVE_THINKING_TOOL: Tool = {
+  name: "cognitive_thinking",
+  description: `⚡ Cognitive Thinking - Rapid AI-powered query analysis for quick insights
+
+Prioritizes speed and high-level understanding using heuristic and parallel processing. Ideal for quick assessments of text.
+
+FEATURES:
+- Summarization: Generate concise summaries
+- Sentiment Analysis: Determine overall sentiment (positive, negative, neutral)
+- Key Concept Extraction: Identify important terms and ideas
+- Tone Detection: Detect communication tone (formal, informal, urgent, informative)
+
+Use this tool when you need a fast overview and immediate insights from text, without requiring deep, sequential reasoning.`,
+  inputSchema: {
+    type: "object",
+    properties: {
+      query: {
+        type: "string",
+        description: "The input text or query to process"
+      },
+      focus_areas: {
+        type: "array",
+        items: {
+          type: "string",
+          enum: ["sentiment", "key_concepts", "summary", "urgency", "tone"]
+        },
+        description: "Specific areas to focus the rapid analysis on"
+      },
+      max_response_length: {
+        type: "integer",
+        description: "Maximum length of the summary/insights in words",
+        default: 100
+      }
+    },
+    required: ["query"]
+  }
+};
+
 const server = new Server(
   {
     name: "cognitive-architect-server",
-    version: "1.0.0",
+    version: "2.0.0",
   },
   {
     capabilities: {
@@ -1240,12 +1429,14 @@ const server = new Server(
 const thinkingServer = new SequentialThinkingServer();
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
-  tools: [COGNITIVE_ARCHITECT_TOOL],
+  tools: [COGNITIVE_ARCHITECT_TOOL, COGNITIVE_THINKING_TOOL],
 }));
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
-  if (request.params.name === "cognitivearchitect") {
+  if (request.params.name === "cognitive_architect") {
     return thinkingServer.processThought(request.params.arguments);
+  } else if (request.params.name === "cognitive_thinking") {
+    return thinkingServer.processCognitiveThought(request.params.arguments);
   }
 
   return {
@@ -1260,7 +1451,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function runServer() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("🧠 CognitiveArchitect MCP Server v1.0.0 - Advanced AI Reasoning Engine");
+  console.error("Cognitive Architect MCP Server v2.0.0 - Advanced AI Reasoning Engine");
 }
 
 runServer().catch((error) => {

@@ -1,10 +1,8 @@
 #!/usr/bin/env node
-"use strict";
 /**
  * Test script for the CognitiveArchitect MCP Server
  * This script demonstrates the advanced cognitive analysis capabilities
  */
-Object.defineProperty(exports, "__esModule", { value: true });
 function runTests() {
     console.log('🧠 Testing CognitiveArchitect MCP Server v1.0.0...\n');
     console.log('🏗️ Advanced AI-powered reasoning engine');
@@ -33,4 +31,5 @@ function runTests() {
     console.log('🚀 Transform your thinking into structured, analyzable cognitive architecture.');
 }
 runTests();
+export {};
 //# sourceMappingURL=test-cognitive.js.map

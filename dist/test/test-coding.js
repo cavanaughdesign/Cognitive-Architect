@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-"use strict";
 /**
  * Comprehensive test demonstrating CognitiveArchitect's coding capabilities
  */
-Object.defineProperty(exports, "__esModule", { value: true });
 function runCodingTests() {
     console.log('🧠 CognitiveArchitect v1.0.0 - Coding Capabilities Test\n');
     console.log('💻 CODING ANALYSIS FEATURES:');
@@ -59,4 +57,5 @@ function runCodingTests() {
     console.log('🚀 Ready to transform your programming thoughts into structured software engineering architecture.');
 }
 runCodingTests();
+export {};
 //# sourceMappingURL=test-coding.js.map
