@@ -5,7 +5,7 @@
     "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "allowImportingTsExtensions": false,
+    "allowImportingTsExtensions": true,
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -14,8 +14,9 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    "emitDeclarationOnly": true,
     "types": ["node"]
   },
-  "include": ["./index.ts", "test/**/*.ts"],
+  "include": ["./index.ts", "test/**/*.ts", "tools/tool_interfaces.ts"],
   "exclude": ["node_modules", "dist"]
 }

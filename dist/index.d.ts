@@ -18,10 +18,14 @@ export declare class SequentialThinkingServer {
         }>;
         isError?: boolean;
     };
-    private generateSummary;
-    private analyzeSentiment;
-    private extractKeyConcepts;
-    private detectTone;
+    private orchestrateCognitiveProcess;
+    private _internal_web_fetch;
+    private _internal_google_search;
+    private _internal_deep_analysis;
+    private _internal_summarize;
+    private _internal_sentiment;
+    private _internal_extract_key_concepts;
+    private _internal_detect_tone;
     private validateThoughtData;
     private formatThought;
     private analyzeContext;
@@ -59,5 +63,15 @@ export declare class SequentialThinkingServer {
         }>;
         isError?: boolean;
     };
+    private detectProblemType;
+    private createSolutionStrategy;
+    private executeInternalTool;
+    private _internal_problem_decomposition;
+    private _internal_domain_research;
+    private _internal_solution_design;
+    private _internal_solution_validation;
+    private _internal_solution_synthesis;
+    private generateFinalSolution;
+    private generateNextActionSuggestion;
 }
 //# sourceMappingURL=index.d.ts.map
